@@ -1,0 +1,20 @@
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Abyss/PlayerData", fileName = "Player Data")]
+public class PlayerData : ScriptableObject
+{
+    [Header("Movement")]
+    public AnimationCurve moveCurve;
+
+    [Header("Jump")]
+    public float jumpForce;
+    public int nbJump;
+    
+    [Header("Dash")]
+    public AnimationCurve dashCurve;
+    public float speedMultiplier;
+
+    [Header("Light")]
+    public float nbLight;
+    public float lightDuration;
+}
