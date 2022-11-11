@@ -13,17 +13,17 @@ public class PlayerMovement : MonoBehaviour
         if (rb2d.velocity.x >= 0 && moveInput > 0)
         {
             timer += Time.deltaTime;
-            rb2d.velocity = new Vector3(data.moveCurve.Evaluate(timer), 0);
+            rb2d.velocity = new Vector2(data.moveCurve.Evaluate(timer), rb2d.velocity.y);
         }
         else if (rb2d.velocity.x <= 0 && moveInput < 0)
         {
             timer += Time.deltaTime;
-            rb2d.velocity = new Vector3(-data.moveCurve.Evaluate(timer), 0);
+            rb2d.velocity = new Vector2(-data.moveCurve.Evaluate(timer), rb2d.velocity.y);
         }
         else 
         {
             timer = 0;
-            rb2d.velocity = Vector2.zero;
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
 
         if (moveInput < 0.1f && moveInput > -0.1f)
