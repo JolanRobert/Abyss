@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyJump()
     {
+        playerJump.RefreshJumps();
+        
         if (inputs.Player.Jump.WasPressedThisFrame())
         {
             playerJump.Jump();
