@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerData data;
 
+    [SerializeField] private Animator animator;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerJump playerJump;
     [SerializeField] private PlayerDash playerDash;
@@ -11,8 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputs inputs;
     private float moveInput;
-    
-    
+    private AnimType currentAnimation;
+
     //private List<InputElement> inputBuffer;
 
     private void Start()
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
         ApplyJump();
         ApplyDash();
         ApplyLight();
+
+        HandleAnimations();
     }
 
     private void ApplyMovement()
@@ -46,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyJump()
     {
-        playerJump.RefreshJumps();
+        playerJump.RefreshJump();
         
         if (inputs.Player.Jump.WasPressedThisFrame())
         {
@@ -80,9 +83,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleAnimations()
+    {
+        if (playerDash.isDashing)
+        {
+            ChangeAnimationState(AnimType.Dash);
+        }
+        else if (playerJump.isJumping)
+        {
+            ChangeAnimationState(AnimType.Jump);
+        }
+        else if (playerJump.isFalling)
+        {
+            ChangeAnimationState(AnimType.Fall);
+        }
+        else
+        {
+            ChangeAnimationState(Mathf.Abs(moveInput) > 0 ? AnimType.Move : AnimType.Idle);
+        }
+    }
+
+    private void ChangeAnimationState(AnimType animType)
+    {
+        if (animType == currentAnimation) return;
+
+        animator.Play(animType.ToString());
+        currentAnimation = animType;
+    }
+
     private enum AnimType
     {
-        Idle, Move, Jump, Dash
+        Idle, Move, Jump, Fall,  Dash
     }
 
     private class InputElement

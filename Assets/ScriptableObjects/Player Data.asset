@@ -36,15 +36,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpForce: 13
+  jumpForce: 15
   nbJump: 2
-  dashCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  dashDuration: 0.1
-  speedMultiplier: 6
+  dashDuration: 0.2
+  dashCooldown: 0.35
+  speedMultiplier: 4
   nbLight: 0
   lightDuration: 0
