@@ -24,6 +24,7 @@ public class PlayerDash : MonoBehaviour
         nbDash--;
 
         rb2d.velocity = new Vector2(rb2d.velocity.x,0) * data.speedMultiplier;
+        transform.Translate(0,0.1f,0);
 
         float timeElapsed = 0;
         while (timeElapsed < data.dashDuration)
