@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerData data;
-    
+    public bool isDashing = false;
+
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerJump playerJump;
     [SerializeField] private PlayerDash playerDash;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputs inputs;
     private float moveInput;
+    
     
     //private List<InputElement> inputBuffer;
 
@@ -35,8 +37,11 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        moveInput = inputs.Player.Move.ReadValue<float>();
-        playerMovement.Move(moveInput);
+        if (!isDashing)
+        {
+            moveInput = inputs.Player.Move.ReadValue<float>();
+            playerMovement.Move(moveInput);
+        }
 
         //inputElement.animType = (moveInput < 0.1f && moveInput > -0.1f) ? AnimType.Idle : AnimType.Move;
     }
@@ -56,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyDash()
     {
-        if (inputs.Player.Dash.WasPressedThisFrame())
+        if (inputs.Player.Dash.WasPressedThisFrame() && !isDashing)
         {
             playerDash.Dash();
         }

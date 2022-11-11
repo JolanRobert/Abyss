@@ -12,6 +12,7 @@ public class PlayerData : ScriptableObject
     
     [Header("Dash")]
     public AnimationCurve dashCurve;
+    public float dashDuration;
     public float speedMultiplier;
 
     [Header("Light")]
