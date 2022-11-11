@@ -8,8 +8,8 @@ public class PlayerDash : MonoBehaviour
     private PlayerData data => playerController.data;
 
     public bool isDashing;
+    private bool canDash = true;
     private int nbDash;
-    private float timer = 0;
 
     public void Dash()
     {
@@ -19,9 +19,10 @@ public class PlayerDash : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
-        nbDash--;
         isDashing = true;
-        
+        canDash = false;
+        nbDash--;
+
         rb2d.velocity = new Vector2(rb2d.velocity.x,0) * data.speedMultiplier;
 
         float timeElapsed = 0;
@@ -34,10 +35,14 @@ public class PlayerDash : MonoBehaviour
         
         rb2d.velocity /= data.speedMultiplier;
         isDashing = false;
+        
+        yield return new WaitForSeconds(data.dashCooldown);
+        canDash = true;
     }
 
     public void RefreshDash()
     {
+        if (!canDash) return;
         nbDash = 1;
     }
 }
