@@ -804,6 +804,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4336795184095927917, guid: 84cc1f6e958c7bc478bb580444256d91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008586026404698886, guid: 84cc1f6e958c7bc478bb580444256d91, type: 3}
+      propertyPath: groundCheckOffsetX
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6008586026404698904, guid: 84cc1f6e958c7bc478bb580444256d91, type: 3}
       propertyPath: m_RootOrder
       value: 3

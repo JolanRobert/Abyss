@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5765361570777958248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.45, z: 0}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -270,10 +270,12 @@ MonoBehaviour:
   rb2d: {fileID: 6008586026404698906}
   playerController: {fileID: 6008586026404698907}
   groundCheck: {fileID: 4336795184095927917}
-  groundCheckOffsetX: 0.25
+  groundCheckOffsetX: 0.53
   layerMask:
     serializedVersion: 2
     m_Bits: 1
+  isJumping: 0
+  isFalling: 0
 --- !u!114 &6008586026404698885
 MonoBehaviour:
   m_ObjectHideFlags: 0
