@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6008586026314326806}
   - component: {fileID: 6008586026314326807}
+  - component: {fileID: 1196234131523992795}
   m_Layer: 2
   m_Name: Sprite
   m_TagString: Untagged
@@ -115,6 +116,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1196234131523992795
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008586026314326805}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e4dbb5032f0ef947b540b86977d2225, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6008586026404698911
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c1b0917db150a3d48baf7db63d892525, type: 2}
+  animator: {fileID: 1196234131523992795}
   playerMovement: {fileID: 6008586026404698887}
   playerJump: {fileID: 6008586026404698886}
   playerDash: {fileID: 6008586026404698885}

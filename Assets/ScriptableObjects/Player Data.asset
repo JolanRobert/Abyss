@@ -44,7 +44,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashDuration: 0.1
-  speedMultiplier: 6
+  dashDuration: 0.2
+  speedMultiplier: 4
   nbLight: 0
   lightDuration: 0

@@ -11,7 +11,6 @@ public class PlayerData : ScriptableObject
     public int nbJump;
     
     [Header("Dash")]
-    public AnimationCurve dashCurve;
     public float dashDuration;
     public float speedMultiplier;
 

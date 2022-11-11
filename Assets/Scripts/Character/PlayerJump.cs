@@ -12,11 +12,14 @@ public class PlayerJump : MonoBehaviour
     
     private PlayerData data => playerController.data;
 
+    public bool isJumping;
+    public bool isFalling;
     private int nbJumpLeft;
     
     public void Jump()
     {
         if (!IsGrounded() && nbJumpLeft <= 0) return;
+        isJumping = true;
         rb2d.velocity = new Vector2(rb2d.velocity.x, data.jumpForce);
         nbJumpLeft--;
     }
@@ -29,12 +32,11 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    public void RefreshJumps()
+    public void RefreshJump()
     {
-        if (isGrounded && rb2d.velocity.y <= 0)
-        {
-            nbJumpLeft = data.nbJump;
-        }
+        isFalling = rb2d.velocity.y < -0.1f;
+        if (isFalling) isJumping = false;
+        if (isGrounded && rb2d.velocity.y <= 0) nbJumpLeft = data.nbJump;
     }
 
     private bool IsGrounded()
