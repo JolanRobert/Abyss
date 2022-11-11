@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,30 +13,56 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerDash playerDash;
     [SerializeField] private PlayerLight playerLight;
 
+    [SerializeField] private int inputBufferSize;
+
     private PlayerInputs inputs;
     private float moveInput;
     private AnimType currentAnimation;
 
-    //private List<InputElement> inputBuffer;
+    public InputElement[] inputBuffer;
+    private InputElement inputElement = new();
+    private int inputBufferIdx = 0;
+
+    private bool canPlay = true;
+    private Vector2 checkPoint;
+    [SerializeField] private Image blackScreen;
+    [SerializeField] private float transitionTime;
 
     private void Start()
     {
+        checkPoint = new Vector2(transform.position.x, transform.position.y);
+
+        inputElement.inputTime = Time.time;
+        inputElement.animType = AnimType.Idle;
+        inputElement.playerPosition = transform.position;
+
+        inputBuffer = new InputElement[inputBufferSize];
+        for (int i = 0; i < inputBufferSize; i++) 
+        {
+            inputBuffer[i] = inputElement;
+        }
+
         inputs = new PlayerInputs();
         inputs.Enable();
     }
 
-    //private InputElement inputElement = new();
     private void Update()
     {
-        //inputElement.inputTime = Time.time % 5;
-        //inputElement.playerPosition = transform.position;
-        
-        ApplyMovement();
-        ApplyJump();
-        ApplyDash();
-        ApplyLight();
+        inputElement = new();
+        inputElement.inputTime = Time.time;
+        inputElement.playerPosition = transform.position;
+
+        if (canPlay) 
+        {
+            ApplyMovement();
+            ApplyJump();
+            ApplyDash();
+            ApplyLight();
+        }
 
         HandleAnimations();
+
+        BufferInput();
     }
 
     private void ApplyMovement()
@@ -54,7 +83,6 @@ public class PlayerController : MonoBehaviour
         if (inputs.Player.Jump.WasPressedThisFrame())
         {
             playerJump.Jump();
-            //inputElement.animType = AnimType.Jump;
         }
         else if (inputs.Player.Jump.WasReleasedThisFrame())
         {
@@ -88,18 +116,22 @@ public class PlayerController : MonoBehaviour
         if (playerDash.isDashing)
         {
             ChangeAnimationState(AnimType.Dash);
+            inputElement.animType = AnimType.Dash;
         }
         else if (playerJump.isJumping)
         {
             ChangeAnimationState(AnimType.Jump);
+            inputElement.animType = AnimType.Jump;
         }
         else if (playerJump.isFalling)
         {
             ChangeAnimationState(AnimType.Fall);
+            inputElement.animType = AnimType.Fall;
         }
         else
         {
             ChangeAnimationState(Mathf.Abs(moveInput) > 0 ? AnimType.Move : AnimType.Idle);
+            inputElement.animType = Mathf.Abs(moveInput) > 0 ? AnimType.Move : AnimType.Idle;
         }
     }
 
@@ -111,12 +143,66 @@ public class PlayerController : MonoBehaviour
         currentAnimation = animType;
     }
 
-    private enum AnimType
+    private void BufferInput() 
+    {
+        inputBuffer[inputBufferIdx] = inputElement;
+        inputBufferIdx = (++inputBufferIdx % inputBufferSize);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("trigger enter !");
+        if (collision.gameObject.TryGetComponent(out ShadowController shadow) && shadow.canHurt)
+        {
+            StartCoroutine(BlackScreenCoroutine(transitionTime));
+            shadow.canHurt = false;
+            Debug.Log("Aled");
+        }
+    }
+
+    private void Respawn() 
+    {
+        transform.position = checkPoint;
+    }
+
+    private float fadeTime;
+    IEnumerator BlackScreenCoroutine(float t) 
+    {
+        fadeTime = 0;
+        canPlay = false;
+        while (fadeTime < t / 3) 
+        {
+            yield return new WaitForEndOfFrame();
+            blackScreen.color = Color.Lerp(blackScreen.color, new Color(0, 0, 0, 1), 0.1f);
+            fadeTime += Time.deltaTime;
+        }
+        blackScreen.color = new Color(0, 0, 0, 1);
+        Respawn();
+        yield return new WaitForSeconds(t / 3);
+        
+        fadeTime = 0;
+
+        while (fadeTime < t / 3)
+        {
+            yield return new WaitForEndOfFrame();
+            if (fadeTime < t / 6) 
+            {
+                canPlay = true;
+            }
+            blackScreen.color = Color.Lerp(blackScreen.color, new Color(0, 0, 0, 0), 0.01f);
+            fadeTime += Time.deltaTime;
+        }
+        
+
+        blackScreen.color = new Color(0, 0, 0, 0);
+    }
+
+    public enum AnimType
     {
         Idle, Move, Jump, Fall,  Dash
     }
 
-    private class InputElement
+    public class InputElement
     {
         public float inputTime;
         public AnimType animType;
