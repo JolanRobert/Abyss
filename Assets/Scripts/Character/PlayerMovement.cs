@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
 
-        if (moveInput < 0.1f && moveInput > -0.1f)
+        if (!(moveInput < 0.1f && moveInput > -0.1f))
         {
             transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
         }

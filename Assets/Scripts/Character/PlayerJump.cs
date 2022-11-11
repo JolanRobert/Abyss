@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
+    public bool isGrounded => IsGrounded();
+    
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform groundCheck;
@@ -29,7 +31,7 @@ public class PlayerJump : MonoBehaviour
 
     public void RefreshJumps()
     {
-        if (IsGrounded() && rb2d.velocity.y <= 0)
+        if (isGrounded && rb2d.velocity.y <= 0)
         {
             nbJumpLeft = data.nbJump;
         }

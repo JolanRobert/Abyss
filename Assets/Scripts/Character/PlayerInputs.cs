@@ -79,7 +79,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""ec37c66c-1461-45a7-8c4d-767462e256c5"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",

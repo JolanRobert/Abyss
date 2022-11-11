@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public PlayerData data;
-    public bool isDashing = false;
 
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerJump playerJump;
@@ -37,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (!isDashing)
+        if (!playerDash.isDashing)
         {
             moveInput = inputs.Player.Move.ReadValue<float>();
             playerMovement.Move(moveInput);
@@ -63,7 +61,12 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyDash()
     {
-        if (inputs.Player.Dash.WasPressedThisFrame() && !isDashing)
+        if (playerJump.isGrounded)
+        {
+            playerDash.RefreshDash();
+        }
+        
+        if (inputs.Player.Dash.WasPressedThisFrame() && !playerDash.isDashing)
         {
             playerDash.Dash();
         }

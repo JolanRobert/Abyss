@@ -170,7 +170,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 6008586026404698906}
   playerController: {fileID: 6008586026404698907}
+  isDashing: 0
 --- !u!114 &6008586026404698884
 MonoBehaviour:
   m_ObjectHideFlags: 0
