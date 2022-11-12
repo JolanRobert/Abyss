@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private List<PressButton> buttons;
 
-    private bool isOpen;
+    //private bool isOpen;
 
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
 
     private void Open()
     {
-        isOpen = true;
+        //isOpen = true;
         animator.Play("Open");
         boxCollider.isTrigger = true;
     }

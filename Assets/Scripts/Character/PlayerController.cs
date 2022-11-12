@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private InputElement inputElement = new();
     private int inputBufferIdx = 0;
 
-    private bool canPlay = true;
     private Vector2 checkPoint;
     [SerializeField] private Image blackScreen;
     [SerializeField] private float transitionTime;
@@ -52,13 +51,10 @@ public class PlayerController : MonoBehaviour
         inputElement.inputTime = Time.time;
         inputElement.playerPosition = transform.position;
 
-        if (canPlay) 
-        {
-            ApplyMovement();
-            ApplyJump();
-            ApplyDash();
-            ApplyLight();
-        }
+        ApplyMovement();
+        ApplyJump();
+        ApplyDash();
+        ApplyLight();
 
         HandleAnimations();
 
@@ -151,12 +147,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("trigger enter !");
         if (collision.gameObject.TryGetComponent(out ShadowController shadow) && shadow.canHurt)
         {
             StartCoroutine(BlackScreenCoroutine(transitionTime));
             shadow.canHurt = false;
-            Debug.Log("Aled");
         }
     }
 
@@ -169,7 +163,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator BlackScreenCoroutine(float t) 
     {
         fadeTime = 0;
-        canPlay = false;
+        inputs.Disable();
         while (fadeTime < t / 3) 
         {
             yield return new WaitForEndOfFrame();
@@ -177,18 +171,18 @@ public class PlayerController : MonoBehaviour
             fadeTime += Time.deltaTime;
         }
         blackScreen.color = new Color(0, 0, 0, 1);
+        
         Respawn();
         yield return new WaitForSeconds(t / 3);
-        
+
+        inputs.Enable();
         fadeTime = 0;
 
         while (fadeTime < t / 3)
         {
             yield return new WaitForEndOfFrame();
             if (fadeTime < t / 6) 
-            {
-                canPlay = true;
-            }
+
             blackScreen.color = Color.Lerp(blackScreen.color, new Color(0, 0, 0, 0), 0.01f);
             fadeTime += Time.deltaTime;
         }
@@ -196,6 +190,12 @@ public class PlayerController : MonoBehaviour
 
         blackScreen.color = new Color(0, 0, 0, 0);
     }
+
+    public void SetCheckPoint(Vector2 pos) 
+    {
+        checkPoint = pos;
+    }
+
 
     public enum AnimType
     {
