@@ -30,7 +30,11 @@ public class Door : MonoBehaviour
     {
         buttons.Remove(button);
         buttonCountText.text = $"0/{buttons.Count}";
-        if (buttons.Count == 0) Open();
+        if (buttons.Count == 0)
+        {
+            buttonCountText.gameObject.SetActive(false);
+            Open();
+        }
     }
 
     private void Open()
