@@ -4929,7 +4929,7 @@ GameObject:
   - component: {fileID: 403610982}
   - component: {fileID: 403610981}
   m_Layer: 0
-  m_Name: Campfire
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
