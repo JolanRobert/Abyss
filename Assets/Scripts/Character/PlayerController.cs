@@ -200,19 +200,16 @@ public class PlayerController : MonoBehaviour
 
     public void SetNbJump(int nbJump) 
     {
-        Debug.Log("Set Jump");
         data.nbJump = nbJump;
     }
 
     public void EnableDash(bool enabled) 
     {
-        Debug.Log("enable Dash");
         isDashEnabled = enabled;
     }
 
     public void EnableLight(bool enabled) 
     {
-        Debug.Log("enable Light");
         isLightEnabled = enabled;
     }
 

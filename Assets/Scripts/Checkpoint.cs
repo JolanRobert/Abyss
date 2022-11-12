@@ -4,6 +4,7 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject light;
 
     private bool isActive;
 
@@ -11,6 +12,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (isActive) return;
         isActive = true;
+        light.SetActive(true);
         animator.Play("Idle");
     }
 

@@ -42,11 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 291798747
+    locked: 0
+  - name: Element
+    uniqueID: 823849471
+    locked: 0
   - name: LD
     uniqueID: 4254812925
     locked: 0
-  - name: LD Info
-    uniqueID: 356528675
+  - name: LD UI
+    uniqueID: 4081157645
     locked: 0
   - name: Entities
     uniqueID: 3745246761
