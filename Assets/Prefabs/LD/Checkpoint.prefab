@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2909620641503749233}
   - component: {fileID: 2909620641503749234}
   - component: {fileID: 2909620641503749235}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: SafeZone
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 2909620642388038667}
   - component: {fileID: 2909620642388038660}
   - component: {fileID: 2909620642388038661}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sprite
   m_TagString: SafeZone
   m_Icon: {fileID: 0}
@@ -4928,7 +4928,7 @@ GameObject:
   - component: {fileID: 4356617242145669394}
   - component: {fileID: 403610982}
   - component: {fileID: 403610981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5037,6 +5037,10 @@ PrefabInstance:
     - target: {fileID: 8490091309073392999, guid: e6efaa45d5e71a841b38c5fccc538d76, type: 3}
       propertyPath: m_Name
       value: SafeZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490091309073392999, guid: e6efaa45d5e71a841b38c5fccc538d76, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6efaa45d5e71a841b38c5fccc538d76, type: 3}
