@@ -87,5 +87,12 @@ public class ShadowController : MonoBehaviour
             //Debug.Log(timer / t);
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.Lerp(sprite.color.a, alpha, timer / t));
         }
+        if (alpha > 0.9) 
+        {
+            if ((playerController.transform.position - transform.position).magnitude < 0.4) 
+            {
+                playerController.Respawn();
+            }
+        }
     }
 }

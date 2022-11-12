@@ -5,7 +5,8 @@ public class PlayerLight : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     private PlayerData data => playerController.data;
-    [SerializeField] private Transform safeZone;
+    [SerializeField] private GameObject safeZonePrefab;
+    private GameObject safeZone;
     [SerializeField] private float safeZoneTime;
 
     [SerializeField] private float cooldown;
@@ -22,7 +23,15 @@ public class PlayerLight : MonoBehaviour
 
     IEnumerator SafeZoneCoroutine(float t) 
     {
-        safeZone.transform.position = transform.position;
+        if (safeZone != null)
+        {
+            safeZone.transform.position = transform.position;
+        }
+        else 
+        {
+            safeZone = Instantiate(safeZonePrefab, transform.position, Quaternion.identity);
+        }
+        
         safeZone.gameObject.SetActive(true);
         yield return new WaitForSeconds(t);
         safeZone.gameObject.SetActive(false);

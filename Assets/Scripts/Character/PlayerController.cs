@@ -156,14 +156,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out ShadowController shadow) && shadow.canHurt)
         {
-            StartCoroutine(BlackScreenCoroutine(transitionTime));
+            Respawn();
             shadow.canHurt = false;
         }
     }
 
-    private void Respawn() 
+    public void Respawn() 
     {
-        transform.position = checkPoint;
+        StartCoroutine(BlackScreenCoroutine(transitionTime));
     }
 
     private float fadeTime;
@@ -178,8 +178,8 @@ public class PlayerController : MonoBehaviour
             fadeTime += Time.deltaTime;
         }
         blackScreen.color = new Color(0, 0, 0, 1);
-        
-        Respawn();
+
+        transform.position = checkPoint;
         yield return new WaitForSeconds(t / 3);
 
         inputs.Enable();
