@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private InputElement inputElement = new();
     private int inputBufferIdx = 0;
 
-    private bool canPlay = true;
     private Vector2 checkPoint;
     [SerializeField] private Image blackScreen;
     [SerializeField] private float transitionTime;
@@ -148,12 +147,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("trigger enter !");
         if (collision.gameObject.TryGetComponent(out ShadowController shadow) && shadow.canHurt)
         {
             StartCoroutine(BlackScreenCoroutine(transitionTime));
             shadow.canHurt = false;
-            Debug.Log("Aled");
         }
     }
 
