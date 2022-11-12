@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private AnimType currentAnimation;
 
+    private bool isDashEnabled;
+    private bool isLightEnabled;
+
     public InputElement[] inputBuffer;
     private InputElement inputElement = new();
     private int inputBufferIdx = 0;
@@ -29,6 +32,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        isDashEnabled = false;
+        isLightEnabled = false;
+        data.nbJump = 1;
+
         checkPoint = new Vector2(transform.position.x, transform.position.y);
 
         inputElement.inputTime = Time.time;
@@ -93,7 +100,7 @@ public class PlayerController : MonoBehaviour
             playerDash.RefreshDash();
         }
         
-        if (inputs.Player.Dash.WasPressedThisFrame() && !playerDash.isDashing)
+        if (inputs.Player.Dash.WasPressedThisFrame() && !playerDash.isDashing && isDashEnabled)
         {
             playerDash.Dash();
         }
@@ -101,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyLight()
     {
-        if (inputs.Player.Light.WasPressedThisFrame())
+        if (inputs.Player.Light.WasPressedThisFrame() && isLightEnabled)
         {
             playerLight.Light();
         }
@@ -189,6 +196,24 @@ public class PlayerController : MonoBehaviour
         
 
         blackScreen.color = new Color(0, 0, 0, 0);
+    }
+
+    public void SetNbJump(int nbJump) 
+    {
+        Debug.Log("Set Jump");
+        data.nbJump = nbJump;
+    }
+
+    public void EnableDash(bool enabled) 
+    {
+        Debug.Log("enable Dash");
+        isDashEnabled = enabled;
+    }
+
+    public void EnableLight(bool enabled) 
+    {
+        Debug.Log("enable Light");
+        isLightEnabled = enabled;
     }
 
     public void SetCheckPoint(Vector2 pos) 
