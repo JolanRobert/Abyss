@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 962770973269076513}
   - component: {fileID: 962770973269076512}
   - component: {fileID: 962770973269076517}
+  - component: {fileID: 1139493208}
   m_Layer: 2
   m_Name: Shadow
   m_TagString: Untagged
@@ -77,9 +78,30 @@ MonoBehaviour:
   timeOffset: 1
   animator: {fileID: 5667598317871664610}
   sprite: {fileID: 962770973360099886}
-  inoffensiveAlpha: 0.35
-  fadeTime: 0.2
-  canHurt: 1
+  inoffensiveAlpha: 0.2
+  fadeTime: 0.8
+  canHurt: 0
+--- !u!50 &1139493208
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962770973269076518}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &962770973360099884
 GameObject:
   m_ObjectHideFlags: 0
