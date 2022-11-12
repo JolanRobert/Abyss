@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 962770973269076513}
   - component: {fileID: 962770973269076512}
   - component: {fileID: 962770973269076517}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 962770973360099887}
   - component: {fileID: 962770973360099886}
   - component: {fileID: 5667598317871664610}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7066673384122314580}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
