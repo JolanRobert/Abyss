@@ -18,7 +18,8 @@ public class PlayerJump : MonoBehaviour
     
     public void Jump()
     {
-        if (!IsGrounded() && nbJumpLeft <= 0) return;
+        if (!isGrounded && nbJumpLeft <= 0) return;
+        
         isJumping = true;
         rb2d.velocity = new Vector2(rb2d.velocity.x, data.jumpForce);
         nbJumpLeft--;
@@ -36,7 +37,7 @@ public class PlayerJump : MonoBehaviour
     {
         isFalling = rb2d.velocity.y < -0.1f;
         if (isFalling) isJumping = false;
-        if (isGrounded && rb2d.velocity.y <= 0) nbJumpLeft = data.nbJump;
+        if (isGrounded && rb2d.velocity.y <= 0.1f) nbJumpLeft = data.nbJump;
     }
 
     private bool IsGrounded()
