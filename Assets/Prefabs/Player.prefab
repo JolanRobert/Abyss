@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6008586026314326805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.06, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: bcbbc4ec6c52bee4888f6b1a502b568b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,12 +105,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1294675463, guid: 42d2d22655729114f8ddbc6a3a925d07, type: 3}
+  m_Sprite: {fileID: 1125865826, guid: e233c610c4c2ba24da491200c322bc91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.7, y: 1.5}
+  m_Size: {x: 1.8, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -241,6 +241,9 @@ MonoBehaviour:
   playerJump: {fileID: 6008586026404698886}
   playerDash: {fileID: 6008586026404698885}
   playerLight: {fileID: 6008586026404698884}
+  inputBufferSize: 3000
+  blackScreen: {fileID: 0}
+  transitionTime: 0
 --- !u!114 &6008586026404698887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +273,7 @@ MonoBehaviour:
   rb2d: {fileID: 6008586026404698906}
   playerController: {fileID: 6008586026404698907}
   groundCheck: {fileID: 4336795184095927917}
-  groundCheckOffsetX: 0.53
+  groundCheckOffsetX: 0.4
   layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -290,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 6008586026404698906}
   playerController: {fileID: 6008586026404698907}
+  impulseSource: {fileID: 0}
   isDashing: 0
 --- !u!114 &6008586026404698884
 MonoBehaviour:
