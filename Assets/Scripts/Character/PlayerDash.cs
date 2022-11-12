@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class PlayerDash : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
     private PlayerData data => playerController.data;
 
     public bool isDashing;
@@ -25,6 +27,8 @@ public class PlayerDash : MonoBehaviour
 
         rb2d.velocity = new Vector2(rb2d.velocity.x,0) * data.speedMultiplier;
         transform.Translate(0,0.1f,0);
+
+        impulseSource.GenerateImpulse();
 
         float timeElapsed = 0;
         while (timeElapsed < data.dashDuration)
