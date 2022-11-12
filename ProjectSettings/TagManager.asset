@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SafeZone
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: LD
     uniqueID: 4254812925
+    locked: 0
+  - name: LD Info
+    uniqueID: 356528675
     locked: 0
   - name: Entities
     uniqueID: 3745246761

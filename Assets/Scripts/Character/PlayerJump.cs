@@ -35,7 +35,7 @@ public class PlayerJump : MonoBehaviour
 
     public void RefreshJump()
     {
-        isFalling = rb2d.velocity.y < -0.0f;
+        isFalling = rb2d.velocity.y <= -0.01f;
         if (isFalling) isJumping = false;
         if (isGrounded && rb2d.velocity.y <= 0.1f) nbJumpLeft = data.nbJump;
     }

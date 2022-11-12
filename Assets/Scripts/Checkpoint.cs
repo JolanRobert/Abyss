@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
 
     private bool isActive;
 
-    public void Activate()
+    private void Activate()
     {
         if (isActive) return;
         isActive = true;
